@@ -12,7 +12,7 @@
           <ion-label floating>Style</ion-label>
           <!-- <ion-input type="text" formControlName="style" clearInput></ion-input> -->
           <ion-select formControlName="style" [(ngModel)]="data.style">
-            <ion-option *ngFor="let s of lstStyles" [value]="s">{{s}}</ion-option>
+            <ion-option *ngFor="let s of lstStyles" [value]="s" [innerHTML]="s"></ion-option>
           </ion-select>
         </ion-item>
       </ion-col>

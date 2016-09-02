@@ -68,7 +68,7 @@ export class ModelDetailPage {
     console.log(typeContent);
     this.dataServices.getDefault(typeContent).then(response => {
       console.log("Default values loaded", response);
-      this.events.publish('contentChange',response);
+      //this.events.publish('contentChange',response);
     }, error => {
       console.log(error);
     })

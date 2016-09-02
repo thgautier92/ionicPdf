@@ -25,19 +25,20 @@
       </ion-item>
     </ion-col>
   </ion-row>
-  <ion-row no-padding *ngFor="let r of rows;let x=index">
-    <ion-col *ngFor="let c of r ;let y=index">
-      <div [ngSwitch]="x">
-        <ion-item *ngSwitchCase="100">
-          <h4>{{c}}</h4>
-        </ion-item>
-        <ion-item *ngSwitchDefault>
-          <input focuser [ngModel]="rows[x][y]" (input)="store(x,y,$event)" [ngModelOptions]="{standalone: true}"/>
-        </ion-item>
-      </div>
-    </ion-col>
-  </ion-row>
-  <button type="submit" [disabled]="!form.valid"> <ion-icon name="checkmark"></ion-icon>{{idx}}</button>
-  <button secondary (click)="validData()"><ion-icon name="checkmark"></ion-icon>{{idx}}</button>
-  <button danger (click)="resetData()"> <ion-icon name="refresh"></ion-icon>Annuler modifications</button>
-</form>
+  <form [formGroup]="formBody">
+    <ion-row no-padding *ngFor="let r of rows;let x=index">
+      <ion-col *ngFor="let c of r ;let y=index">
+        <div [ngSwitch]="x">
+          <ion-item *ngSwitchCase="100">
+            <h4>{{c}}</h4>
+          </ion-item>
+          <ion-item *ngSwitchDefault>
+            <ion-textarea (ngModel)="x+'-'+y" formControlName="{{x}}-{{y}}"></ion-textarea>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+    </form>
+    <button type="submit" [disabled]="!form.valid"> <ion-icon name="checkmark"></ion-icon>{{idx}}</button>
+    <button danger (click)="resetData()"> <ion-icon name="refresh"></ion-icon>Annuler modifications</button>
+  </form>

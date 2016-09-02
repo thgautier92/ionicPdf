@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import {IONIC_DIRECTIVES} from 'ionic-angular';
+import {IONIC_DIRECTIVES, Events} from 'ionic-angular';
 
 /*
   Generated class for the paragraph component.
@@ -25,7 +25,7 @@ export class ParagraphContent {
   lstStyles: any = ['none', 'header', 'normal', 'centerItalic'];
   @Input('init') data: DataParagraph;
   @Input('idx') idx: any;
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private events:Events) {
     this.form = fb.group({
       style: ['', Validators.required],
       text: ['']

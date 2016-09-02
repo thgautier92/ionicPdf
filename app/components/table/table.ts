@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import {IONIC_DIRECTIVES} from 'ionic-angular';
+import {IONIC_DIRECTIVES,Events} from 'ionic-angular';
 
 import {Focuser} from "../../components/focuser/focuser";
 
@@ -15,7 +15,7 @@ export class DataTable {
 @Component({
   selector: 'tablePdf',
   templateUrl: 'build/components/table/table.html',
-  directives: [IONIC_DIRECTIVES,Focuser]
+  directives: [IONIC_DIRECTIVES, Focuser]
 })
 /* Design format
 table: 
@@ -33,22 +33,22 @@ table:
 */
 export class TableContent {
   form: FormGroup;
-  formTable: FormGroup;
+  formBody: FormGroup;
   default: any;
   colsWidths: any;
-  rows: any;
+  rows: any = [];
   @Input('init') data: DataTable;
   @Input('idx') idx: any;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private events:Events) {
     this.default = new DataTable(1, 4,
       ['*', 'auto', 100, '*'],
       ['First', 'Second', 'Third', 'The last one']);
     this.form = fb.group({
       headerRows: ['', Validators.required],
       numberCol: ['', Validators.required],
-      widths: [''],
-      body: ['']
+      widths: ['']
     });
+    this.formBody = fb.group({});
     this.rows = [];
     let defrows = [
       ['Titre 1', 'Titre 2', 'Titre 3', 'Titre 4', 'Titre 5'],
@@ -60,16 +60,47 @@ export class TableContent {
   ngAfterViewInit() {
     setTimeout(() => {
       this.rows = this.data['table']['body'];
-      this.form.controls['numberCol'].value = 4;
+      //this.form.controls['numberCol'].value = 4;
+      let bodyForm = new FormGroup({});
+      for (let x in this.rows) {
+        for (let y in this.rows[x]) {
+          let ctrl = new FormControl(this.rows[x][y]);
+          bodyForm.addControl(x + "-" + y, ctrl);
+        }
+      }
+      this.formBody = bodyForm;
+      //this.form.addControl("body",bodyForm);
+      console.log(this.form);
+
     });
   }
-  logForm(evt) {
-    console.log(evt, this.form.value);
+  logForm(evt: Event) {
+    //console.log(evt, this.form.value, this.formBody.value);
+    //Calculate the number of row and cols
+    let xNum = 0;let yNum = 0;
+    for (let el in this.formBody.value) {
+      let ref = el.split("-");
+      let x = +ref[0];
+      let y = +ref[1];
+      if (x !== xNum) { xNum = x }
+      if (y !== yNum) { yNum = y }
+    }
+    let bodyArr = [];
+    for (let x=0;x<=xNum;x++){
+      let xRow=[];
+      for (let y=0;y<=yNum;y++){
+        xRow.push(this.formBody.controls[x+'-'+y].value);  
+      }
+      bodyArr.push(xRow);
+    }
+    let ret = this.form.value;
+    ret['numberCol']=yNum+1;
+    ret['body'] = bodyArr;
+    console.log(ret);
+    this.events.publish('contentChange',{table:ret});
     event.preventDefault();
   }
-  validData() {
-    console.log("Table save", this.rows);
-  }
+
   resetData() {
     this.ngAfterViewInit();
   }
@@ -79,10 +110,5 @@ export class TableContent {
       wd.push['*'];
     }
     this.data.widths = wd;
-  }
-  store(x, y, c: Event) {
-    c.preventDefault;
-    console.log(x, y, c);
-    this.rows[x][y] = c.target['value'];
   }
 }
