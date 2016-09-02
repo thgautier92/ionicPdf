@@ -2,6 +2,8 @@ import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import {IONIC_DIRECTIVES} from 'ionic-angular';
 
+import {Focuser} from "../../components/focuser/focuser";
+
 export class DataTable {
   constructor(
     public headerRows: number,
@@ -13,7 +15,7 @@ export class DataTable {
 @Component({
   selector: 'tablePdf',
   templateUrl: 'build/components/table/table.html',
-  directives: [IONIC_DIRECTIVES]
+  directives: [IONIC_DIRECTIVES,Focuser]
 })
 /* Design format
 table: 

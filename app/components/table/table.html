@@ -32,7 +32,7 @@
           <h4>{{c}}</h4>
         </ion-item>
         <ion-item *ngSwitchDefault>
-          <input [ngModel]="rows[x][y]" (input)="store(x,y,$event)" [ngModelOptions]="{standalone: true}"/>
+          <input focuser [ngModel]="rows[x][y]" (input)="store(x,y,$event)" [ngModelOptions]="{standalone: true}"/>
         </ion-item>
       </div>
     </ion-col>
