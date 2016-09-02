@@ -1,0 +1,43 @@
+<!--
+  Generated template for the Table component.
+
+  See https://angular.io/docs/ts/latest/api/core/ComponentMetadata-class.html
+  for more info on Angular 2 Components.
+-->
+<form [formGroup]="form" (submit)="logForm($event)">
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Nb lignes entete {{headerRows}}</ion-label>
+        <ion-range min="0" step="1" max="5" snaps="true" [(ngModel)]="headerRows" formControlName="headerRows">
+          <ion-label range-left>1</ion-label>
+          <ion-label range-right>5</ion-label>
+        </ion-range>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label>Nb colonnes : {{numberCol}}</ion-label>
+        <ion-range min="0" step="1" max="10" snaps="true" (ngChange)="resetColumns(numberCol)" [(ngModel)]="numberCol" formControlName="numberCol">
+          <ion-label range-left>1</ion-label>
+          <ion-label range-right>10</ion-label>
+        </ion-range>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row no-padding *ngFor="let r of rows;let x=index">
+    <ion-col *ngFor="let c of r ;let y=index">
+      <div [ngSwitch]="x">
+        <ion-item *ngSwitchCase="100">
+          <h4>{{c}}</h4>
+        </ion-item>
+        <ion-item *ngSwitchDefault>
+          <input [ngModel]="rows[x][y]" (input)="store(x,y,$event)" [ngModelOptions]="{standalone: true}"/>
+        </ion-item>
+      </div>
+    </ion-col>
+  </ion-row>
+  <button type="submit" [disabled]="!form.valid"> <ion-icon name="checkmark"></ion-icon>{{idx}}</button>
+  <button secondary (click)="validData()"><ion-icon name="checkmark"></ion-icon>{{idx}}</button>
+  <button danger (click)="resetData()"> <ion-icon name="refresh"></ion-icon>Annuler modifications</button>
+</form>

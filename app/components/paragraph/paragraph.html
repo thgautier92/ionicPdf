@@ -1,0 +1,29 @@
+<!--
+  Generated template for the Model component.
+
+  See https://angular.io/docs/ts/latest/api/core/ComponentMetadata-class.html
+  for more info on Angular 2 Components.
+-->
+
+  <form [formGroup]="form" (submit)="logForm($event)">
+    <ion-row wrap>
+      <ion-col baseline width-25>
+        <ion-item no-line>
+          <ion-label floating>Style</ion-label>
+          <!-- <ion-input type="text" formControlName="style" clearInput></ion-input> -->
+          <ion-select formControlName="style" [(ngModel)]="data.style">
+            <ion-option *ngFor="let s of lstStyles" [value]="s">{{s}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col baseline width-70>
+        <ion-item>
+          <ion-label floating>Paragraphe</ion-label>
+          <ion-textarea formControlName="text" [(ngModel)]="data.text" clearInput></ion-textarea>
+        </ion-item>
+      </ion-col>
+      <ion-col center width-10 text-right>
+        <button type="submit" [disabled]="!form.valid"> <ion-icon name="checkmark"></ion-icon>{{idx}}</button>
+      </ion-col>
+    </ion-row>
+  </form>

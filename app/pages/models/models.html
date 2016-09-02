@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Modèles de documents
+    </ion-title>
+    <ion-buttons end>
+      <button (click)="editItem('new')">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="models">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item-divider primary>
+      <ion-icon name="document" item-left danger></ion-icon>
+      Modèles de documents (CouchDB-pdf_models)
+      <button item-right round (click)="loadModels()"><ion-icon name="refresh-circle"></ion-icon> Actualiser ({{totModels}})</button>
+    </ion-item-divider>
+    <ion-item-sliding *ngFor="let item of models">
+      <ion-item text-wrap>
+        <ion-avatar item-left (click)="loadPdf(item)">
+          <img src="img/pdf-icon-150x150.png">
+        </ion-avatar>
+        <h2>{{item.doc.info.title}}</h2>
+        <p>{{item.doc.info.subject}}</p>
+        <p>Fabriqué avec {{item.doc.framework}}</p>
+        <p class='small'>Ref:{{item.doc._id}}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button primary (click)="editItem(item)">
+        <ion-icon name="create"></ion-icon>
+        Edit.
+      </button>
+        <button primary (click)="callEditor(item)">
+        <ion-icon name="create"></ion-icon>
+        Json Edit.
+      </button>
+        <button danger (click)="deleteItem(item)">
+        <ion-icon name="trash"></ion-icon>
+        Suppr.
+      </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button primary (click)="loadPdf(item)">
+        <ion-icon name="build"></ion-icon>
+        Test
+      </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

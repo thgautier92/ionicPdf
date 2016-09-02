@@ -1,0 +1,140 @@
+{
+    "info": {
+        "title": "awesomeDocument",
+        "author": "johndoe",
+        "subject": "subjectofdocument",
+        "keywords": "keywordsfordocument"
+    },
+    "pageSize": "A4",
+    "pageOrientation": "portrait",
+    "pageMargins": [
+        20,
+        60,
+        20,
+        60
+    ],
+    "content": [
+        {
+            "text": "This is a header",
+            "style": "header"
+        },
+        "No styling here,this is a standard paragraph",
+        {
+            "text": "Another text",
+            "style": "anotherStyle"
+        },
+        {
+            "text": "Multiple styles applied",
+            "style": [
+                "header",
+                "anotherStyle"
+            ]
+        },
+        " ",
+        "Mutlicolumnsexample: ",
+        " ",
+        {
+            "columns": [
+                {
+                    "width": "auto",
+                    "text": "Firstcolumn"
+                },
+                {
+                    "width": "*",
+                    "text": "Secondcolumn"
+                },
+                {
+                    "width": 100,
+                    "text": "Thirdcolumn"
+                },
+                {
+                    "width": "20%",
+                    "text": "Fourthcolumn"
+                }
+            ],
+            "columnGap": 10
+        },
+        " ",
+        "Table example: ",
+        {
+            "table": {
+                "headerRows": 1,
+                "widths": [
+                    "*",
+                    "auto",
+                    100,
+                    "*"
+                ],
+                "body": [
+                    [
+                        "First",
+                        "Second",
+                        "Third",
+                        "Thelastone"
+                    ],
+                    [
+                        "Value1",
+                        "Value2",
+                        "Value3",
+                        "Value4"
+                    ],
+                    [
+                        {
+                            "text": "Boldvalue",
+                            "bold": true
+                        },
+                        "Val2",
+                        "Val3",
+                        "Val4"
+                    ]
+                ]
+            }
+        },
+        " ",
+        "Bulleted list example: ",
+        {
+            "ul": [
+                "Item1",
+                "Item2",
+                "Item3",
+                {
+                    "text": "Item4",
+                    "bold": true
+                }
+            ]
+        },
+        " ",
+        "Numbered list example: ",
+        {
+            "ol": [
+                "Item1",
+                "Item2",
+                "Item3"
+            ]
+        },
+        {
+            "text": "Text on Landscape",
+            "style": "header",
+            "pageOrientation": "landscape",
+            "pageBreak": "before"
+        },
+        "Loremipsumdolorsitamet,consecteturadipisicingelit.Malitprofectaversaturnomineocurreretmultavit,officiisviveremusaeternumsuperstitiosuspicoralianostram,quandonostroscongressussusceperantconcedereturlegunturiam,vigiliaedemocriteatantoperecausae atiliiplerumqueipsaspotiturpertineantmultisremquaeripro,legendumdidicissecredereexmaluissetpervidetis.Curdiscordanspraetereataliaeruinaedirigenturorestemeodem,praetermittendadivinum.Collegisti, deterioramalintloquunturofficiicotidiefinitasreferridoleamusambiguaacute.Adhaesionesrationebeatearbitrareturdetractisperdiscere,constituanthostispolyaeno.Diuconcederetur.\n",
+        {
+            "text": "Text on PORTRAIT",
+            "style": "header",
+            "pageOrientation": "portrait",
+            "pageBreak": "before"
+        }
+    ],
+    "styles": {
+        "header": {
+            "fontSize": 22,
+            "bold": true,
+            "color":"blue"
+        },
+        "anotherstyle": {
+            "italics": true,
+            "alignment": "right"
+        }
+    }
+}

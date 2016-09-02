@@ -1,0 +1,17 @@
+{
+      "framework": "pdfmake",
+      "info": {
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "pdfmake,modele"
+      },
+      "pageSize": "A4",
+      "pageOrientation": "portrait",
+      "pageMargins": [20, 60, 20, 60],
+      "content": [],
+      "styles": {
+        "header": { "fontSize": 22, "bold": true, "color": "blue" },
+        "centerItalic": { "italics": true, "alignment": "center" }
+      }
+    }

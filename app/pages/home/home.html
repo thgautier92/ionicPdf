@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Accueil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home">
+  <h3>Bienvenue sur Ionic Pdf Generator!</h3>
+  <p>
+    Cette application sert expérimenter la création de PDF à partir du client javascript IONIC.
+  </p>
+  <ion-list>
+    <ion-item-divider primary>
+      <ion-icon name="leaf" item-left></ion-icon>
+      Bibliothèques JS expérimentées
+    </ion-item-divider>
+    <button text-wrap ion-item (click)="chanceString()">Chance.js : outil de génération aléatoire de texte</button>
+    <button text-wrap ion-item (click)="createPdf()">PdfMake.js : outil de création de PDF</button>
+  </ion-list>
+</ion-content>
